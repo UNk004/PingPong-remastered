@@ -1,11 +1,12 @@
-#include<iostream>
-#include<raylib.h>
+#include <iostream>
+#include <raylib.h>
 #include "libraries/scene.hpp"
 
 int screen_height=600;
 int screen_width=1068;
 int frmCtr;
 Color neorange = {255,92,0,255};
+Color neoYellow = {207, 255, 4,255};
 
 class Paddle
 {
@@ -21,7 +22,6 @@ class Paddle
     {
         DrawRectangleRoundedLines(Rectangle{xPos,yPos,paddle_width,paddle_height},0.8,0.5,WHITE);
         DrawRectangleRounded(Rectangle{xPos,yPos,paddle_width,paddle_height},0.8,0.5,neorange);
-    
     }
     
     void playerInput()
@@ -41,8 +41,7 @@ class Paddle
         {
             yPos = GetScreenHeight() - 70;
         }
-    }
-    
+    }   
 };
 class Bot
 {
@@ -101,7 +100,7 @@ class Ball
     int Xspeed,Yspeed;
     void drawBall()
     {
-        DrawCircle(x,y,radius,WHITE);
+        DrawCircle(x,y,radius,neoYellow);
     }
     void update()
     {
@@ -117,8 +116,6 @@ class Ball
         }
     }
 };
-
-
 
 int fps_cap = 60;
 
