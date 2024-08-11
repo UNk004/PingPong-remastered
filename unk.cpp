@@ -1,5 +1,5 @@
-#include<iostream>
-#include<raylib.h>
+#include <iostream>
+#include <raylib.h>
 #include "libraries/scene.hpp"
 
 int screen_height=600;
@@ -66,7 +66,7 @@ class Bot
         chance = GetRandomValue(0,100);
         frmCtr = 0;
         }
-        if(frmCtr >= 10){
+        if(frmCtr == 10|| frmCtr ==20){
         if(chance <=80)
         {
             y = r - 35;
