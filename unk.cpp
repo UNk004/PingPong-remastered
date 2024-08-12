@@ -7,6 +7,8 @@ int screen_width=1068;
 int frmCtr;
 Color neorange = {255,92,0,255};
 Color neoYellow = {207, 255, 4,255};
+Color blue = {35,162,220,255};
+color blueComplimentary = {191,227,28,255};
 
 class Paddle
 {
