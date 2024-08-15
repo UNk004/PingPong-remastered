@@ -63,11 +63,14 @@ class Bot
     void AI(int r)
     {
         frmCtr++;
-        if(frmCtr>=30){
-        chance = GetRandomValue(0,100);
-        frmCtr = 0;
+        if(frmCtr>=100){
+        frmCtr=0;
         }
-        if(frmCtr == 10|| frmCtr ==20){
+        if(frmCtr % 7 == 0)
+        {
+            chance = GetRandomValue(0,100); 
+        }
+        //Get random value 
         if(chance <=80)
         {
             y = r - 35;
@@ -77,8 +80,7 @@ class Bot
             y = r + 35;
         }
         else y = r;
-        
-        }
+        //movement
 
         if(y<= 0)
         {
@@ -87,6 +89,7 @@ class Bot
         {
             y = GetScreenHeight() - 70;
         }
+        //fixed in screen
     }
 
 };
@@ -94,11 +97,9 @@ class Ball
 {
     private:
     const float radius = 16;
-    int x= screen_width/2;
     
-
     public:
-    int y;
+    float x,y;
     int Xspeed,Yspeed;
     void drawBall()
     {
@@ -119,21 +120,20 @@ class Ball
     }
     
 };
-
+void collisionCheck();
 int fps_cap = 60;
-
+Paddle paddle;
+Bot bot;
+Ball ball;
 int main()
 {
-    Paddle paddle;
-    Bot bot;
-    Ball ball;
-
     bot.x = screen_width - 30;
     bot.y = screen_height/2 - 35;
     paddle.xPos = 30;
     paddle.yPos = screen_height/2 - 35;
     paddle.speed = 5;
     ball.y = screen_height/2;
+    ball.x =   screen_width/2;;
     ball.Xspeed = 5;
     ball.Yspeed = 5;
 
@@ -150,10 +150,20 @@ int main()
         bot.AI(ball.y);
         ball.drawBall();
         ball.update();
+        collisionCheck();
         ClearBackground(blue);
         EndDrawing();
         
     }
 }
-//Just test to see initialized
-//ok
+
+void collisionCheck()
+{
+    if(CheckCollisionCircleRec(Vector2{ball.x,ball.y},16,Rectangle{paddle.xPos,paddle.yPos,20,70}))
+    {
+        ball.Xspeed *= -1;
+    }if(CheckCollisionCircleRec(Vector2{ball.x,ball.y},16,Rectangle{bot.x,bot.y,20,70}))
+    {
+        ball.Xspeed *= -1;
+    }
+}
