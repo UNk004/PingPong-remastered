@@ -8,7 +8,7 @@ int frmCtr;
 Color neorange = {255,92,0,255};
 Color neoYellow = {207, 255, 4,255};
 Color blue = {35,162,220,255};
-color blueComplimentary = {191,227,28,255};
+Color blueComplimentary = {191,227,28,255};
 
 class Paddle
 {
@@ -102,7 +102,7 @@ class Ball
     int Xspeed,Yspeed;
     void drawBall()
     {
-        DrawCircle(x,y,radius,neoYellow);
+        DrawCircle(x,y,radius,blueComplimentary);
     }
     void update()
     {
@@ -117,6 +117,7 @@ class Ball
             Yspeed *= -1;
         }
     }
+    
 };
 
 int fps_cap = 60;
@@ -149,7 +150,7 @@ int main()
         bot.AI(ball.y);
         ball.drawBall();
         ball.update();
-        ClearBackground(GRAY);
+        ClearBackground(blue);
         EndDrawing();
         
     }
